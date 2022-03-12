@@ -5,7 +5,7 @@ function handleReady() { // This function will call other functions
   console.log("jquery is loaded!")
   $('.operator').on(`click`, userOperator);
   $('#equalBtn').on(`click`, handleSubmit);
-  // $('#clearBtn').on(`click`, clearFunction);
+  $('#clearBtn').on(`click`, clearInputs);
   getCalculatorInputs();
 }
 
@@ -80,4 +80,8 @@ function userOperator() {
 function displayAnswer(userAnswers) {
   $('#answerList').empty();
   $('#answerList').append(userAnswers[userAnswers.length-1]);
+}
+
+function clearInputs() {
+  $('input').val('');
 }
