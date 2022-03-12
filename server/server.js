@@ -2,11 +2,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-let calculatorInputs = {
-    inputOne: [],
-    inputTwo: [],
-  };
-
 // make a server
 const app = express();
 const PORT = 5000;
@@ -22,14 +17,22 @@ app.listen(PORT, function () {
 //bodyParser config!
 app.use(bodyParser.urlencoded({ extended: true }));
 
+let calculatorInputs = [];
+
 // GET & POST Routes go here
 app.post('/calculator', (req, res) => {
     console.log(`POST calculator`, req.body);
-    
+    calculatorInputs.push(req.body);
+    //200 means OK
+    //201 means CREATED
     res.sendStatus(201);
 })
 
-app.get('/calculator', (req, res) => {
-    console.log('GET calculator');
+app.get('/calculator', function (req, res) {
+    // /calculator route
+    // get route to /calculator
+
+    console.log('GET /calculator');
+    // server must respond!
     res.send(calculatorInputs);
-  })
+});
