@@ -28,8 +28,9 @@ function handleSubmit() { // This function is sending the numbers that
   }).then(function (response) {
     console.log(response);
     getCalculatorInputs();
-    $('#mathOne').val('');
-    $('#mathTwo').val('');
+    // $('#mathOne').val('');
+    // $('#mathTwo').val(''); // removed these input field clears
+    // to comply with assignment instructions
   })
 }
 
