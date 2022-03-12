@@ -3,12 +3,9 @@ $(document).ready(handleReady);
 function handleReady() { // This function will call other functions
   // depending on what button is clicked
   console.log("jquery is loaded!")
-  $('#plusBtn').on(`click`, handleSubmit);
-  $('#minusBtn').on(`click`, handleSubmit);
-  $('#multiplyBtn').on(`click`, handleSubmit);
-  $('#divideBtn').on(`click`, handleSubmit);
+  $('.operator').on(`click`, userOperator);
   $('#equalBtn').on(`click`, handleSubmit);
-  $('#clearBtn').on(`click`, handleSubmit);
+  // $('#clearBtn').on(`click`, clearFunction);
   getCalculatorInputs();
 }
 
@@ -43,6 +40,7 @@ function getCalculatorInputs() { // This function contains a get
     url: '/calculator',
     method: 'GET',
   }).then(function (response) {
+    
     //response is res.send(stuff), in this case calculator inputs
     console.log(response);
     //append the quotes in the response to the DOM
@@ -50,6 +48,16 @@ function getCalculatorInputs() { // This function contains a get
   }).catch(function (error) {
     console.log(error);
     alert('error in get!');
+  })
+
+  $.ajax({
+    url: '/answers',
+    method: 'GET',
+  }).then(function (response) {
+    
+    //response is res.send(stuff), in this case calculator inputs
+    console.log(response);
+    displayAnswer(response);
   })
 
   console.log('end of get function...');
@@ -60,10 +68,16 @@ function render(calculations) { //This function appends the calculator inputs to
   $('#calculation').empty();
   //put new data on the DOM
   for (let input of calculations) {
-    $('#calculation').append(`<li>${input.calculatorInputOne} ${input.calculatorInputTwo}</li>`);
+    $('#calculation').append(`<li>${input}</li>`);
   }
 }
+let button;
 
-function addition() {
+function userOperator() {
+  button = $(this).text();
+}
 
+function displayAnswer(userAnswers) {
+  $('#answerList').empty();
+  $('#answerList').append(userAnswers[userAnswers.length-1]);
 }

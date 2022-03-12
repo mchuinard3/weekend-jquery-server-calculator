@@ -24,7 +24,7 @@ let userAnswers = [];
 app.post('/calculator', (req, res) => {
     console.log(`POST calculator`, req.body);
 
-    userHistory.push(req.body);
+   
 
     //200 means OK
     //201 means CREATED
@@ -41,6 +41,15 @@ app.get('/calculator', function (req, res) {
     res.send(userHistory);
 });
 
+app.get('/answers', function (req, res) {
+    // /calculator route
+    // get route to /calculator
+
+    console.log('GET /answers');
+    // server must respond!
+    res.send(userAnswers);
+});
+
 function calculate(solution) {
     let input1 = (solution.calculatorInputOne);
     let button = (solution.button);
@@ -48,22 +57,22 @@ function calculate(solution) {
 
     switch(button) {
         case '+':
-            answer = input1 + input2;
+            answer = (Number(input1) + Number(input2));
             userHistory.push(`${input1} + ${input2} = ${answer}`);
             userAnswers.push(answer);
             break;
         case '-':
-            answer = input1 - input2;
+            answer = (Number(input1) - Number(input2));
             userHistory.push(`${input1} - ${input2} = ${answer}`);
             userAnswers.push(answer);
             break;
         case '*':
-            answer = input1 * input2;
+            answer = (Number(input1) * Number(input2));
             userHistory.push(`${input1} * ${input2} = ${answer}`);
             userAnswers.push(answer);
             break;
         case '/':
-            answer = input1 / input2;
+            answer = (Number(input1) / Number(input2));
             userHistory.push(`${input1} / ${input2} = ${answer}`);
             userAnswers.push(answer);
             break;
