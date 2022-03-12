@@ -17,23 +17,19 @@ app.listen(PORT, function () {
 //bodyParser config!
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let userArray = [];
+let userHistory = [];
 let userAnswers = [];
 
 // GET & POST Routes go here
 app.post('/calculator', (req, res) => {
     console.log(`POST calculator`, req.body);
-    
-let input1 = (req.body.calculatorInputOne);
-let button = (req.body.button);
-let input2 = (req.body.calculatorInputTwo);
 
+    userHistory.push(req.body);
 
-    userArray.push(req.body);
-    
     //200 means OK
     //201 means CREATED
     res.sendStatus(201);
+    calculate(req.body);
 })
 
 app.get('/calculator', function (req, res) {
@@ -42,5 +38,35 @@ app.get('/calculator', function (req, res) {
 
     console.log('GET /calculator');
     // server must respond!
-    res.send(userArray);
+    res.send(userHistory);
 });
+
+function calculate(solution) {
+    let input1 = (solution.calculatorInputOne);
+    let button = (solution.button);
+    let input2 = (solution.calculatorInputTwo);
+
+    switch(button) {
+        case '+':
+            answer = input1 + input2;
+            userHistory.push(`${input1} + ${input2} = ${answer}`);
+            userAnswers.push(answer);
+            break;
+        case '-':
+            answer = input1 - input2;
+            userHistory.push(`${input1} - ${input2} = ${answer}`);
+            userAnswers.push(answer);
+            break;
+        case '*':
+            answer = input1 * input2;
+            userHistory.push(`${input1} * ${input2} = ${answer}`);
+            userAnswers.push(answer);
+            break;
+        case '/':
+            answer = input1 / input2;
+            userHistory.push(`${input1} / ${input2} = ${answer}`);
+            userAnswers.push(answer);
+            break;
+    }
+    
+}
