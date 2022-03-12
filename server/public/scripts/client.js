@@ -24,7 +24,9 @@ function handleSubmit() { // This function is sending the numbers that
     method: 'POST',
     data: {
       calculatorInputOne: calculatorInputOne,
+      button: button,
       calculatorInputTwo: calculatorInputTwo
+      
     }
   }).then(function (response) {
     console.log(response);
@@ -53,11 +55,15 @@ function getCalculatorInputs() { // This function contains a get
   console.log('end of get function...');
 }
 
-function render(calculations) {
+function render(calculations) { //This function appends the calculator inputs to the dom
   //wash away old data
   $('#calculation').empty();
   //put new data on the DOM
   for (let input of calculations) {
     $('#calculation').append(`<li>${input.calculatorInputOne} ${input.calculatorInputTwo}</li>`);
   }
+}
+
+function addition() {
+
 }

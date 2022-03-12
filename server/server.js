@@ -17,12 +17,20 @@ app.listen(PORT, function () {
 //bodyParser config!
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let calculatorInputs = [];
+let userArray = [];
+let userAnswers = [];
 
 // GET & POST Routes go here
 app.post('/calculator', (req, res) => {
     console.log(`POST calculator`, req.body);
-    calculatorInputs.push(req.body);
+    
+let input1 = (req.body.calculatorInputOne);
+let button = (req.body.button);
+let input2 = (req.body.calculatorInputTwo);
+
+
+    userArray.push(req.body);
+    
     //200 means OK
     //201 means CREATED
     res.sendStatus(201);
@@ -34,5 +42,5 @@ app.get('/calculator', function (req, res) {
 
     console.log('GET /calculator');
     // server must respond!
-    res.send(calculatorInputs);
+    res.send(userArray);
 });
