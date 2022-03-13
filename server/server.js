@@ -50,7 +50,8 @@ app.get('/answers', function (req, res) {
     res.send(userAnswers);
 });
 
-function calculate(solution) {
+function calculate(solution) { // This function pushes both the history of the user's calculations, as well as the
+    // answer to their most recent calculation into two separate empty arrays, known as userHistory and userAnswers
     let input1 = (solution.calculatorInputOne);
     let button = (solution.button);
     let input2 = (solution.calculatorInputTwo);

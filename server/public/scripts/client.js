@@ -10,7 +10,7 @@ function handleReady() { // This function will call other functions
 }
 
 function handleSubmit() { // This function is sending the numbers that
-  // the user puts into the calculator to the server
+  // the user puts into the calculator to the server, then getting a response back from the server
   let calculatorInputOne = $('#mathOne').val();
   let calculatorInputTwo = $('#mathTwo').val();
 
@@ -34,8 +34,8 @@ function handleSubmit() { // This function is sending the numbers that
   })
 }
 
-function getCalculatorInputs() { // This function contains a get 
-  // request 
+function getCalculatorInputs() { // This function contains two get requests with two corresponding
+  // responses from the server 
   console.log('Getting Calculator Inputs...');
   $.ajax({
     url: '/calculator',
@@ -56,7 +56,7 @@ function getCalculatorInputs() { // This function contains a get
     method: 'GET',
   }).then(function (response) {
     
-    //response is res.send(stuff), in this case calculator inputs
+    //response is res.send(stuff), in this case the user's answers
     console.log(response);
     displayAnswer(response);
   })
@@ -64,8 +64,8 @@ function getCalculatorInputs() { // This function contains a get
   console.log('end of get function...');
 }
 
-function render(calculations) { //This function appends the calculator inputs to the dom
-  //wash away old data
+function render(calculations) { // This function appends the calculator inputs to the dom
+  //wash away old data:
   $('#calculation').empty();
   //put new data on the DOM
   for (let input of calculations) {
@@ -74,15 +74,18 @@ function render(calculations) { //This function appends the calculator inputs to
 }
 let button;
 
-function userOperator() {
+function userOperator() { // This function makes it so the correct mathematical operation is
+  // performed depending on what button is clicked by the user
   button = $(this).text();
 }
 
-function displayAnswer(userAnswers) {
+function displayAnswer(userAnswers) { // This function allows the user's answers from their calculation 
+  // to be displayed on the DOM
   $('#answerList').empty();
   $('#answerList').append(userAnswers[userAnswers.length-1]);
 }
 
-function clearInputs() {
+function clearInputs() { // This function makes it so that when the clear button is clicked
+  // on by the user, their calculator inputs will be cleared
   $('input').val('');
 }
