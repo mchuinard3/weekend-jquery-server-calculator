@@ -44,7 +44,7 @@ function getCalculatorInputs() { // This function contains a get
     
     //response is res.send(stuff), in this case calculator inputs
     console.log(response);
-    //append the quotes in the response to the DOM
+    //append the calculator inputs in the response to the DOM
     render(response);
   }).catch(function (error) {
     console.log(error);

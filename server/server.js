@@ -42,8 +42,8 @@ app.get('/calculator', function (req, res) {
 });
 
 app.get('/answers', function (req, res) {
-    // /calculator route
-    // get route to /calculator
+    // /answers route
+    // get route to /answers
 
     console.log('GET /answers');
     // server must respond!
